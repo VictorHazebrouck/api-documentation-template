@@ -1,0 +1,362 @@
+x-tags:
+  - Schemas
+type: object
+properties:
+  _id:
+    type: string
+    format: Mongo_Object_ID
+    example: 61dfdfcb78a7ea03ae3d0a0f
+  title:
+    type: string
+    description: full apellation
+    example: Fullstack JS full-time
+  keyStack:
+    type: string
+    description: program
+    example: fullstack-js
+  keyMode:
+    type: string
+    description: time-period
+    example: full-time
+  state:
+    type: string
+    example: null
+  crmId:
+    type: number
+    format: someKindOfId
+    example: 553494177
+  minTestScore:
+    type: number
+    example: 9
+  totalHours:
+    type: number
+    example: 400
+  numberOfBatches:
+    type: number
+    example: 148
+  templateContractId:
+    type: object
+    example: null
+    properties:
+      fr:
+        type: string
+  # region __POSTPROGRAM__
+  postprogram:
+    type: array
+    description: post-program structure with ref to slides
+    items:
+      type: object
+      properties:
+        title:
+          type: string
+          description: group title
+          example: Développeur
+        chapters:
+          type: array
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+                description: step title
+                example: Continuer à coder
+              stepId:
+                type: string
+                description: reference to a document from the [SLIDE](#schemas/Slide) collection
+                format: Mongo_Object_ID
+                example: 5ee4d567de1cf22d6f4d4c00
+  # endregion
+  # region __TRACKS
+  tracks:
+    type: array
+    description: Data per Week
+    items:
+      type: object
+      properties:
+        # region __DATA__
+        data:
+          type: array
+          description: translation data
+          items:
+            type: object
+            properties:
+              language:
+                type: string
+                enum:
+                  - fr
+                  - en
+                example: fr
+              title:
+                type: string
+                example: Week 1
+              text:
+                type: string
+                example: Week 1
+        # endregion
+        title:
+          type: string
+          example: Week 1
+        text:
+          type: string
+          example: Week 1
+        urlname:
+          type: string
+          example: prog
+        imagepath:
+          type: string
+          example: null
+        sort:
+          type: number
+          example: null
+        # region __PROJECTS__
+        projects:
+          type: array
+          description: array of 1, Material for the whole Week
+          items:
+            type: object
+            properties:
+              # region __DATA__
+              data:
+                type: array
+                description: translation data
+                items:
+                  type: object
+                  properties:
+                    language:
+                      type: string
+                      enum:
+                        - fr
+                        - en
+                      example: fr
+                    title:
+                      type: string
+                      example: Review des notions fondamentales
+                    text:
+                      type: string
+                      example: Les Types de données, les variables, les boucles, les conditions... Revoyons ces notions essentielles pour écrire vos futures app
+              # endregiong
+              title:
+                type: string
+                example: Week 1
+              text:
+                type: string
+                example: Week 1
+              # projectId:
+              #   type: string
+              #   format: Mongo_Object_ID
+              #   description: reference to ??? collection
+              # imagepath:
+              #   type: string
+              days:
+                type: array
+                description: Data per Day
+                items:
+                  type: object
+                  properties:
+                    # region __DATA__
+                    data:
+                      type: array
+                      description: translation data
+                      items:
+                        type: object
+                        properties:
+                          language:
+                            type: string
+                            enum:
+                              - fr
+                              - en
+                            example: fr
+                          title:
+                            type: string
+                            example: Setup & Démarrer avec Git
+                    # endregion
+                    title:
+                      type: string
+                      description: Week title
+                      example: Setup & Démarrer avec Git
+                    day:
+                      type: number
+                      description: Day title
+                      example: 1
+                    # region __STEPS__
+                    steps:
+                      type: array
+                      description: Steps (exercises, courses, ...) of the Day
+                      items:
+                        type: object
+                        properties:
+                          _id:
+                            type: string
+                            format: Mongo_Object_ID
+                            example: 5b9a7a6e6a2dc02a8cd58cc0
+                          # region __DATA__
+                          data:
+                            type: array
+                            description: translation data
+                            items:
+                              type: object
+                              properties:
+                                language:
+                                  type: string
+                                  enum:
+                                    - fr
+                                    - en
+                                  example: fr
+                                text:
+                                  type: string
+                                  example: Démarrer avec Git
+                          # endregion
+                          text:
+                            type: string
+                            description: Step title (dspl Bold)
+                            example: Démarrer avec Git
+                          stepId:
+                            type: string
+                            format: Mongo_Object_ID
+                            description: |
+                              reference to a document from the SLIDES || QUIZZ || EXERCICE || FLASHCARD collection. To be used together with stepType
+                            example: 61dff60778a7ea03ae3d0a16
+                          stepType:
+                            type: string
+                            description: |
+                              Step type, name of the db collection to which the previously defined stepId is linked:  
+                              [SLIDE](#schema/Slide) || [QUIZZ](#schema/Quizz) || [EXERCICE](#schema/Exercice) || [FLASHCARD](#schema/Flashcard)
+                            enum:
+                              - quizz
+                              - slide
+                              - exercice
+                              - flashcard
+                            example: quizz
+                          stepType_v2:
+                            type: string
+                            description: Step type more precise (dspl on the right)
+                            enum:
+                              - quizz
+                              - course
+                              - briefing
+                              - info
+                              - rncp
+                              - project
+                              - exercice
+                              - challenge
+                              - flashcard
+                            example: quizz
+                          mainGroup:
+                            type: string
+                            example: Les fondamentaux
+                          secondaryGroup:
+                            type: string
+                            description: Step category (dspl under title)
+                            example: Setup
+                          evaluationType:
+                            type: string
+                            enum:
+                              - auto
+                              - student
+                              - teacher
+                          rncpEvaluation:
+                            type: boolean
+                            example: null
+                          rncpModules:
+                            type: array
+                            items:
+                              type: number
+                            example: [4.1]
+                          checkpoint:
+                            type: boolean
+                            example: null
+                          integrated:
+                            type: boolean
+                            example: false
+                          optional:
+                            type: boolean
+                            description: Whether or not the Step is mendatory
+                            example: false
+                          progress:
+                            type: boolean
+                            example: true
+                          imagepath:
+                            type: string
+                            example: null
+                          tag:
+                            type: string
+                            description: Ref for the left icon ?
+                            example: Git
+                    # endregion
+        # endregion
+  # endregion
+  # region __PLANNING__
+  planning:
+    description: Array of week objects, containing day object with effective time per day-period
+    type: array
+    items:
+      type: object
+      properties:
+        week:
+          type: number
+          example: 1
+        weekType:
+          type: string
+          example: null
+        eval:
+          type: boolean
+          example: true
+        days:
+          type: array
+          items:
+            type: object
+            properties:
+              weekday:
+                type: number
+                example: 1
+              date:
+                type: string
+                format: date-time
+                example: null
+              countDay:
+                type: number
+                example: 1
+              dayType:
+                type: string
+                enum:
+                  - startProject
+                  - lastCourse
+                  - endBatch
+                  - mvpVote
+                example: null
+              periods:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                      enum:
+                        - morning
+                        - afternoon
+                        - evening
+                        - officeHours
+                        - fullDay
+                      example: morning
+                    start:
+                      type: number
+                      example: 32400
+                    end:
+                      type: number
+                      example: 46800
+                    effectiveTime:
+                      type: number
+                      example: 14400
+  # endregion
+  githubConfig:
+    type: object
+    properties:
+      setupStudent:
+        type: string
+        example: La-Capsule-Bootcamp/fullstack-js-full-time-setup
+      correction:
+        type: string
+        example: La-Capsule-Bootcamp/fullstack-js-full-time-corrections
+      setupTeacher:
+        type: string
+        example: La-Capsule-Bootcamp/fullstack-js-full-time-admin

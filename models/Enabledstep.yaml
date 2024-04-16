@@ -1,0 +1,20 @@
+x-tags:
+  - Schemas
+type: object
+properties:
+  _id:
+    type: string
+    format: Mongo_Object_ID
+  user:
+    type: string
+    format: Mongo_Object_ID
+    description: reference to USER_V2
+  batch:
+    type: string
+    format: Mongo_Object_ID
+  stepList:
+    type: array
+    items:
+      type: string
+      description: stepId
+      format: Mongo_Object_ID

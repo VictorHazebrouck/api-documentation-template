@@ -1,0 +1,15 @@
+{
+  "name": "doc-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "redocly build-docs Main.yaml --output=index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@redocly/cli": "^1.11.0"
+  }
+}

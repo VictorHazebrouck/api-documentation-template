@@ -1,0 +1,449 @@
+x-tags:
+  - Schemas
+type: object
+properties:
+  _id:
+    type: string
+    format: Mongo_Object_ID
+  name:
+    type: string
+  batchNumber:
+    type: number
+  group_history:
+    type: object
+    properties:
+      generation_count:
+        type: number
+        default: 0
+      groupList:
+        description: array of Student groups
+        type: array
+        items:
+          type: string
+  city:
+    type: string
+  address:
+    type: string
+  date:
+    type: object
+    properties:
+      start:
+        type: string
+        format: date-time
+      end:
+        type: string
+        format: date-time
+      sessionExamStart:
+        type: string
+        format: date-time
+      iceBreaker:
+        type: string
+        format: date-time
+      breaks:
+        type: array
+        items:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date-time
+            end:
+              type: string
+              format: date-time
+            duration:
+              type: number
+  campus:
+    type: string
+    format: Mongo_Object_ID
+    description: reference to campusInformation collection
+  stackId:
+    type: string
+    format: Mongo_Object_ID
+    description: reference to STACK collection
+  state:
+    type: string
+    enum:
+      - open
+      - unopened
+      - close
+      - in progress
+      - full
+      - last seats
+  price:
+    type: number
+  altPrice:
+    type: number
+  enabledStep:
+    type: array
+    items:
+      type: object
+      properties:
+        stepId:
+          type: string
+          format: Mongo_Object_ID
+          description: reference to SLIDES collection
+        enable:
+          type: boolean
+        enableLiveCode:
+          type: boolean
+        unlockedQuiz:
+          type: boolean
+          default: false
+        unlockedFlashCard:
+          type: boolean
+          default: false
+        unlockedStandAlone:
+          type: boolean
+          default: false
+  isFranchised:
+    type: boolean
+    default: false
+  batchLink:
+    type: array
+    items:
+      type: string
+      format: Mongo_Object_ID
+  staff:
+    type: array
+    items:
+      type: object
+      properties:
+        profile:
+          type: string
+        user:
+          type: string
+          format: Mongo_Object_ID
+          description: reference to User_v2 collection
+        main:
+          type: boolean
+  currentDay:
+    type: object
+    properties:
+      weekday:
+        type: number
+      date:
+        type: string
+        format: date-time
+      countDay:
+        type: number
+      dayType:
+        type: string
+        enum:
+          - startProject
+          - lastCourse
+          - endBatch
+          - mvpVote
+      morning:
+        type: object
+        properties:
+          start:
+            type: string
+            format: date-time
+          end:
+            type: string
+            format: date-time
+          effectiveTime:
+            type: number
+      afternoon:
+        type: object
+        properties:
+          start:
+            type: string
+            format: date-time
+          end:
+            type: string
+            format: date-time
+          effectiveTime:
+            type: number
+      evening:
+        type: object
+        properties:
+          start:
+            type: string
+            format: date-time
+          end:
+            type: string
+            format: date-time
+          effectiveTime:
+            type: number
+      officeHours:
+        type: object
+        properties:
+          start:
+            type: string
+            format: date-time
+          end:
+            type: string
+            format: date-time
+          effectiveTime:
+            type: number
+      fullDay:
+        type: object
+        properties:
+          start:
+            type: string
+            format: date-time
+          end:
+            type: string
+            format: date-time
+          effectiveTime:
+            type: number
+      courseCompleted:
+        type: object
+        properties:
+          teacherId:
+            type: string
+            format: Mongo_Object_ID
+            description: reference to USER_V2 collection
+          date:
+            type: string
+            format: date-time
+  planning:
+    type: array
+    items:
+      type: object
+      properties:
+        week:
+          type: number
+        weekType:
+          type: string
+        eval:
+          type: boolean
+        days:
+          type: array
+          items:
+            type: object
+            properties:
+              weekday:
+                type: number
+              date:
+                type: string
+                format: date-time
+              countDay:
+                type: number
+              dayType:
+                type: string
+                enum:
+                  - startProject
+                  - lastCourse
+                  - endBatch
+                  - mvpVote
+              morning:
+                type: object
+                properties:
+                  start:
+                    type: string
+                    format: date-time
+                  end:
+                    type: string
+                    format: date-time
+                  effectiveTime:
+                    type: number
+              afternoon:
+                type: object
+                properties:
+                  start:
+                    type: string
+                    format: date-time
+                  end:
+                    type: string
+                    format: date-time
+                  effectiveTime:
+                    type: number
+              evening:
+                type: object
+                properties:
+                  start:
+                    type: string
+                    format: date-time
+                  end:
+                    type: string
+                    format: date-time
+                  effectiveTime:
+                    type: number
+              officeHours:
+                type: object
+                properties:
+                  start:
+                    type: string
+                    format: date-time
+                  end:
+                    type: string
+                    format: date-time
+                  effectiveTime:
+                    type: number
+              fullDay:
+                type: object
+                properties:
+                  start:
+                    type: string
+                    format: date-time
+                  end:
+                    type: string
+                    format: date-time
+                  effectiveTime:
+                    type: number
+              courseCompleted:
+                type: object
+                properties:
+                  teacherId:
+                    type: string
+                    format: Mongo_Object_ID
+                    description: reference to USER_V2 collection
+                  date:
+                    type: string
+                    format: date-time
+# region __EXAMPLE__
+example:
+  {
+    "_id": "63b81d3ad6b80f00167c40e6",
+    "group_history":
+      {
+        "generation_count": 49,
+        "groupList":
+          [
+            [
+              {
+                "_id": "647a1f9b817e7c001a604125",
+                "email": "yannleroy23@gmail.com",
+                "firstname": "Yann",
+                "lastname": "Leroy",
+              },
+              {
+                "_id": "647c62cb6c756a001a75c6c4",
+                "email": "senacceline@gmail.com",
+                "firstname": "CELINE",
+                "lastname": "SENAC",
+              },
+            ],
+            [],
+          ],
+      },
+    "currentDay":
+      {
+        "morning":
+          {
+            "start": "2023-08-11T07:00:00.000Z",
+            "end": "2023-08-11T11:00:00.000Z",
+          },
+        "afternoon":
+          {
+            "start": "2023-08-11T12:00:00.000Z",
+            "end": "2023-08-11T16:00:00.000Z",
+          },
+        "evening": null,
+        "officeHours": null,
+        "weekday": 5,
+        "date": "2023-08-11T00:00:00.000Z",
+        "countDay": 50,
+        "dayType": "endBatch",
+      },
+    "isFranchised": false,
+    "batchLink": [],
+    "name": "Batch #93 Lille - Fullstack JS full-time",
+    "batchNumber": 93,
+    "city": "Lille",
+    "date":
+      {
+        "start": "2023-06-05T00:00:00.000Z",
+        "end": "2023-08-11T19:59:59.999Z",
+        "sessionExamStart": "2023-08-29T00:00:00.000Z",
+        "iceBreaker": "2023-06-01T00:00:00.000Z",
+      },
+    "enabledStep":
+      [
+        {
+          "unlockedQuiz": false,
+          "unlockedFlashCard": false,
+          "unlockedStandAlone": false,
+          "_id": "647d972f6b90ef001a093d11",
+          "stepId": "64772bdb6c756a001a6ceeb4",
+          "enable": true,
+          "enableLiveCode": false,
+        },
+        {
+          "unlockedQuiz": false,
+          "unlockedFlashCard": false,
+          "unlockedStandAlone": false,
+          "_id": "647d972f6b90ef001a093d12",
+          "stepId": "6349758a2a836400169c4be4",
+          "enable": true,
+          "enableLiveCode": false,
+        },
+        { etc...: hundreds of steps },
+      ],
+    "stackId": "61dfdfcb78a7ea03ae3d0a0f",
+    "state": "open",
+    "price": 6500,
+    "address": "Now coworking Lille Palais de la bourse, 40 Pl. du Théâtre, 59800 Lille",
+    "campus": "62cd2fa22ee773e50a1687b0",
+    "staff":
+      [
+        {
+          "_id": "647998356c756a001a711e38",
+          "profile": "teacher",
+          "user": "6411a8996d307e00145e1436",
+          "main": true,
+        },
+      ],
+    "planning":
+      [
+        {
+          "_id": "63b81d3bd6b80f00167c40f1",
+          "week": 1,
+          "eval": true,
+          "days":
+            [
+              {
+                "morning":
+                  {
+                    "start": "2023-06-05T07:00:00.000Z",
+                    "end": "2023-06-05T11:00:00.000Z",
+                    "effectiveTime": 14400,
+                  },
+                "afternoon":
+                  {
+                    "start": "2023-06-05T12:00:00.000Z",
+                    "end": "2023-06-05T16:00:00.000Z",
+                    "effectiveTime": 14400,
+                  },
+                "evening": null,
+                "officeHours":
+                  {
+                    "start": "2023-06-05T17:00:00.000Z",
+                    "end": "2023-06-05T19:00:00.000Z",
+                    "effectiveTime": 7200,
+                  },
+                "_id": "63b81d3bd6b80f00167c40f2",
+                "weekday": 1,
+                "date": "2023-06-05T00:00:00.000Z",
+                "countDay": 1,
+              },
+              {
+                "morning":
+                  {
+                    "start": "2023-06-06T07:00:00.000Z",
+                    "end": "2023-06-06T11:00:00.000Z",
+                    "effectiveTime": 14400,
+                  },
+                "afternoon":
+                  {
+                    "start": "2023-06-06T12:00:00.000Z",
+                    "end": "2023-06-06T16:00:00.000Z",
+                    "effectiveTime": 14400,
+                  },
+                "evening": null,
+                "officeHours": null,
+                "_id": "63b81d3bd6b80f00167c40f3",
+                "weekday": 2,
+                "date": "2023-06-06T00:00:00.000Z",
+                "countDay": 2,
+              },
+              { etc...: more days },
+            ],
+        },
+        { etc...: more weeks },
+      ],
+    "__v": 0,
+  }
+# endregion

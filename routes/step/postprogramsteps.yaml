@@ -1,0 +1,42 @@
+#/step/postprogramsteps/{stackId}:
+get:
+  summary: Get post-program chapters by stackId
+  description: |
+    Gets STACK data from db by Id.
+    Unwinds chapters from postprogram key. 
+    Returns currated post-program data and their _id from SLIDES collection
+  parameters:
+    - in: path
+      name: stackId
+      required: true
+      description: The ID of the user from User_v2 collection
+      schema:
+        type: string
+  responses:
+    "200":
+      description: Career center information retrieved successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              postprogramsteps:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                    stepId:
+                      type: string
+    "500":
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              error:
+                type: object
