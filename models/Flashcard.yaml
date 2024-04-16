@@ -1,8 +1,0 @@
-x-tags:
-  - Schemas
-type: object
-properties:
-  _id:
-    type: string
-    format: Mongo_Object_ID
-    example: 61dfdfcb78a7ea03ae3d0a0f

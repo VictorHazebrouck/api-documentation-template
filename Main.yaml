@@ -1,173 +1,20 @@
 openapi: 3.0.0
 info:
-  description: Ariane backend docs
-  title: Ariane-documentation
+  title: API_DOCUMENTATION_TEMPLATE
+  description: Some documentation for your API
   version: 1.0.0
   license: { name: private, url: none }
 servers:
-  - url: "http://localhost:3000"
-    description: locally test routes.
+  - url: "http://dev-server.com"
+    description: my dev host.
+  - url: "http://stg-server.com"
+    description: my stg host.
 tags:
   - name: Schemas
-    description: |
-      DB schemas.
-    x-alert: Id cross-collections references can be stored as plain Strings or ObjectId format
+    description: Group DB schemas together
 components:
   schemas:
-    Stack:
-      $ref: models\Stack.yaml
-    Slide:
-      $ref: models\Slide.yaml
-    Quizz:
-      $ref: models\Quizz.yaml
-    Exercice:
-      $ref: models\Exercice.yaml
-    Flashcard:
-      $ref: models\Flashcard.yaml
-    User_v2:
-      $ref: models\User_v2.yaml
-    Batch:
-      $ref: models\Batch.yaml
-    Enabledstep:
-      $ref: models\Enabledstep.yaml
+    User:
+      $ref: models\User.yaml
 paths:
-  # region _SCRIPTS
-
-  # endregion
-  # region ACCOUNT
-
-  # endregion
-  # region ALUMNIS
-
-  # endregion
-  # region API
-
-  # endregion
-  # region BATCH
-  /batch/career-center/{userId}:
-    $ref: routes\batch\career-center.yaml
-  # endregion
-  # region CALENDAR
-
-  # endregion
-  # region CAMPUS
-
-  # endregion
-  # region CLEANBDD
-
-  # endregion
-  # region CONTENT
-
-  # endregion
-  # region CRM
-
-  # endregion
-  # region CRONS
-
-  # endregion
-  # region EMARGEMENT
-
-  # endregion
-  # region EXPERIENCES
-
-  # endregion
-  # region FEELINGOFDAY
-
-  # endregion
-  # region FLASHCARD
-
-  # endregion
-  # region HELPME
-
-  # endregion
-  # region INDEX
-
-  # endregion
-  # region KATAS
-
-  # endregion
-  # region LOGIN
-
-  # endregion
-  # region MANUELOP
-
-  # endregion
-  # region MESSAGE
-
-  # endregion
-  # region POSITIONEMENT
-
-  # endregion
-  # region PRACTICE
-
-  # endregion
-  # region PROGRAM
-
-  # endregion
-  # region PROGRESSION
-
-  # endregion
-  # region PROJECT
-
-  # endregion
-  # region QUIZZ
-
-  # endregion
-  # region REQUEST
-
-  # endregion
-  # region RNCP
-
-  # endregion
-  # region SCRAPRESSOURCES
-
-  # endregion
-  # region SLIDE
-
-  # endregion
-  # region STACK
-
-  # endregion
-  # region STATS
-
-  # endregion
-  # region STEP
-  /step/postprogramsteps/{stackId}:
-    $ref: routes\step\postprogramsteps.yaml
-  # endregion
-  # region STEPPROGRESSION
-
-  # endregion
-  # region STUDENTCOMPETENCIES
-
-  # endregion
-  # region STUDENTDASHBOARD
-
-  # endregion
-  # region STUDENTSTATS
-
-  # endregion
-  # region SYLLABUS
-
-  # endregion
-  # region TEACHERDASHBOARD
-
-  # endregion
-  # region TEACHERDASHBOARDDAY
-
-  # endregion
-  # region TESTS
-
-  # endregion
-  # region TRACK
-
-  # endregion
-  # region TWILIO
-
-  # endregion
-  # region USER
-
-  # endregion
-  # region USERCOMMUNICATION
-
-  # endregion
+  

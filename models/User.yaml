@@ -1,0 +1,58 @@
+x-tags:
+  - Schemas
+type: object
+properties:
+  firstname:
+    type: string
+  lastname:
+    type: string
+  email:
+    type: string
+  encrypted_pwd:
+    type: string
+  token:
+    type: string
+  user_type:
+    type: string
+    enum:
+      - admin
+      - user
+      - superadmin
+  addresses:
+    type: array
+    items:
+      type: object
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        postcode:
+          type: string
+        street:
+          type: string
+        num:
+          type: number
+  created_at:
+    type: string
+    format: date-time
+
+example:
+  {
+    firstname: "John",
+    lastname: "Doe",
+    email: "doe.john@gmail.com",
+    encrypted_pwd: "ciwbcuwoqqwxmioqno",
+    token: "cnowcemxadchfvsuyiuaoi",
+    user_type: "superadmin",
+    addresses:
+      [
+        {
+          city: "Lille",
+          postcode: 59000,
+          country: "France",
+          street: "Bd. de la republique",
+          num: 123,
+        },
+      ],
+  }
